@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Button } from "./Button";
-import React from "react";
 
 const meta = {
   title: "Example/Button",
@@ -58,7 +57,7 @@ export const Variants: Story = {
   name: "Variants & States",
   render: () => (
     <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <Button variant="primary" name="primary">
           Primary
         </Button>
@@ -69,7 +68,7 @@ export const Variants: Story = {
           Tertiary
         </Button>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <Button variant="primary" name="primary-loading" loading>
           Primary
         </Button>
@@ -80,7 +79,7 @@ export const Variants: Story = {
           Tertiary
         </Button>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <Button variant="primary" name="primary-disabled" disabled>
           Primary
         </Button>
@@ -97,7 +96,7 @@ export const Variants: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
       <Button variant="primary" size="small" name="primary-small">
         Small
       </Button>

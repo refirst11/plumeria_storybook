@@ -1,7 +1,7 @@
+/* eslint-disable @plumeria/no-unused-keys */
 import { css } from "@plumeria/core";
 import { useState, type ReactNode, type MouseEvent } from "react";
 
-// リップルエフェクト
 const rippleEffect = css.keyframes({
   to: {
     transform: "scale(4)",
@@ -9,89 +9,80 @@ const rippleEffect = css.keyframes({
   },
 });
 
-// スピナーアニメーション
 const spin = css.keyframes({
   "0%": { transform: "rotate(0deg)" },
   "100%": { transform: "rotate(360deg)" },
 });
 
 const styles = css.create({
-  // ベーススタイル
+  content: {
+    position: "relative",
+    zIndex: 1,
+  },
   button: {
     position: "relative",
-    color: "white",
-    border: "none",
-    cursor: "pointer",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    letterSpacing: "1px",
-    overflow: "hidden",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    transition: "all 0.2s ease-in-out",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-
+    overflow: "hidden",
+    fontWeight: "bold",
+    color: "white",
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+    cursor: "pointer",
+    border: "none",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.2s ease-in-out",
     "&:hover": {
+      boxShadow: "0 7px 10px rgba(0, 0, 0, 0.15)",
       filter: "brightness(0.95)",
       transform: "translateY(-1px)",
-      boxShadow: "0 7px 10px rgba(0, 0, 0, 0.15)",
     },
     "&:active": {
-      transform: "translateY(-1px) scale(0.98)",
-      filter: "brightness(0.9)",
       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+      filter: "brightness(0.9)",
+      transform: "translateY(-1px) scale(0.98)",
     },
     "&:focus": {
       outline: "none",
     },
     "&[disabled]": {
-      opacity: 0.6,
-      cursor: "not-allowed",
       pointerEvents: "none",
+      cursor: "not-allowed",
+      opacity: 0.6,
     },
   },
-
-  // バリアント
   primary: {
-    background: "linear-gradient(-45deg, #0EA5E9, #38BDF8)", // orange
+    background: "linear-gradient(-45deg, #0EA5E9, #38BDF8)", // skyblue
   },
   secondary: {
-    background: "linear-gradient(-45deg, #22C55E, #4ADE80)", // skyblue
+    background: "linear-gradient(-45deg, #22C55E, #4ADE80)", // lightgreen
   },
   tertiary: {
-    background: "linear-gradient(-45deg, #F97316, #FB923C)", // lightgreen
+    background: "linear-gradient(-45deg, #F97316, #FB923C)", // orange
   },
-
-  // サイズ
   small: { padding: "8px 24px", fontSize: "10px", borderRadius: "8px" },
   medium: { padding: "12px 32px", fontSize: "12px", borderRadius: "12px" },
   large: { padding: "16px 40px", fontSize: "14px", borderRadius: "14px" },
-
-  // その他
   ripple: {
     position: "absolute",
+    background: "rgba(255, 255, 255, 0.2)",
     borderRadius: "50%",
     transform: "scale(0)",
     animationName: rippleEffect,
     animationDuration: "0.6s",
     animationTimingFunction: "linear",
-    background: "rgba(255, 255, 255, 0.2)",
-  },
-  content: {
-    position: "relative",
-    zIndex: 1,
   },
   spinner: {
+    width: "1.2em",
+    height: "1.2em",
     border: "2px solid rgba(255, 255, 255, 0.3)",
     borderTop: "2px solid white",
     borderRadius: "50%",
-    width: "1.2em",
-    height: "1.2em",
     animationName: spin,
     animationDuration: "0.8s",
-    animationIterationCount: "infinite",
     animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
   },
 });
 
@@ -138,10 +129,10 @@ export const Button = ({
     const rect = button.getBoundingClientRect();
 
     const newRipple: Ripple = {
-      id: Date.now(),
-      size,
       top: event.clientY - rect.top - size / 2,
       left: event.clientX - rect.left - size / 2,
+      id: Date.now(),
+      size,
     };
 
     setRipples((prevRipples) => [...prevRipples, newRipple]);
@@ -169,7 +160,7 @@ export const Button = ({
       className={buttonClassName}
       onClick={handleClick}
       disabled={isDisabled}
-      aria-label={loading ? "読み込み中" : ariaLabel}
+      aria-label={loading ? "...loading" : ariaLabel}
       aria-busy={loading}
     >
       {loading ? (
