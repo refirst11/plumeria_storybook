@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "css --type-check && storybook build"
   },
   "dependencies": {
     "react": "^19.1.1",
