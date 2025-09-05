@@ -1,18 +1,6 @@
-/* eslint-disable @plumeria/no-unused-keys */
-import { css } from "@plumeria/core";
+import { css, rx } from "@plumeria/core";
 import { useState, type ReactNode, type MouseEvent } from "react";
-
-const rippleEffect = css.keyframes({
-  to: {
-    transform: "scale(4)",
-    opacity: 0,
-  },
-});
-
-const spin = css.keyframes({
-  "0%": { transform: "rotate(0deg)" },
-  "100%": { transform: "rotate(360deg)" },
-});
+import { rippleEffect, spin } from "./animation";
 
 const styles = css.create({
   content: {
@@ -24,13 +12,17 @@ const styles = css.create({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
+    padding: "var(--padding)",
     overflow: "hidden",
+    fontSize: "var(--font-size)",
     fontWeight: "bold",
     color: "white",
     textTransform: "uppercase",
     letterSpacing: "1px",
     cursor: "pointer",
+    background: "var(--bg-gradient)",
     border: "none",
+    borderRadius: "var(--border-radius)",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     transition: "all 0.2s ease-in-out",
     "&:hover": {
@@ -52,18 +44,6 @@ const styles = css.create({
       opacity: 0.6,
     },
   },
-  primary: {
-    background: "linear-gradient(-45deg, #0EA5E9, #38BDF8)", // skyblue
-  },
-  secondary: {
-    background: "linear-gradient(-45deg, #22C55E, #4ADE80)", // lightgreen
-  },
-  tertiary: {
-    background: "linear-gradient(-45deg, #F97316, #FB923C)", // orange
-  },
-  small: { padding: "8px 24px", fontSize: "10px", borderRadius: "8px" },
-  medium: { padding: "12px 32px", fontSize: "12px", borderRadius: "12px" },
-  large: { padding: "16px 40px", fontSize: "14px", borderRadius: "14px" },
   ripple: {
     position: "absolute",
     background: "rgba(255, 255, 255, 0.2)",
@@ -85,6 +65,30 @@ const styles = css.create({
     animationIterationCount: "infinite",
   },
 });
+
+const variantStyles = {
+  primary: { "--bg-gradient": "linear-gradient(-45deg, #0EA5E9, #38BDF8)" },
+  secondary: { "--bg-gradient": "linear-gradient(-45deg, #22C55E, #4ADE80)" },
+  tertiary: { "--bg-gradient": "linear-gradient(-45deg, #F97316, #FB923C)" },
+};
+
+const sizeStyles = {
+  small: {
+    "--padding": "8px 24px",
+    "--font-size": "10px",
+    "--border-radius": "8px",
+  },
+  medium: {
+    "--padding": "12px 32px",
+    "--font-size": "12px",
+    "--border-radius": "12px",
+  },
+  large: {
+    "--padding": "16px 40px",
+    "--font-size": "14px",
+    "--border-radius": "14px",
+  },
+};
 
 interface Ripple {
   id: number;
@@ -125,14 +129,14 @@ export const Button = ({
     }
 
     const button = event.currentTarget;
-    const size = Math.max(button.clientWidth, button.clientHeight);
     const rect = button.getBoundingClientRect();
+    const rippleSize = Math.max(button.clientWidth, button.clientHeight);
 
     const newRipple: Ripple = {
-      top: event.clientY - rect.top - size / 2,
-      left: event.clientX - rect.left - size / 2,
+      top: event.clientY - rect.top - rippleSize / 2,
+      left: event.clientX - rect.left - rippleSize / 2,
       id: Date.now(),
-      size,
+      size: rippleSize,
     };
 
     setRipples((prevRipples) => [...prevRipples, newRipple]);
@@ -148,16 +152,13 @@ export const Button = ({
     }
   };
 
-  const buttonClassName = css.props(
-    styles.button,
-    styles[variant],
-    styles[size]
-  );
-
   return (
     <button
+      {...rx(css.props(styles.button), {
+        ...variantStyles[variant],
+        ...sizeStyles[size],
+      })}
       name={name}
-      className={buttonClassName}
       onClick={handleClick}
       disabled={isDisabled}
       aria-label={loading ? "...loading" : ariaLabel}
