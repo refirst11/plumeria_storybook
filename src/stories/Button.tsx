@@ -1,6 +1,12 @@
-import { css, rx } from "@plumeria/core";
+import { css } from "@plumeria/core";
 import { useState, type ReactNode, type MouseEvent } from "react";
-import { rippleEffect, spin } from "./animation";
+import {
+  rippleEffect,
+  spin,
+  shimmer,
+  gradientShift,
+  aurora,
+} from "./animation";
 
 const styles = css.create({
   content: {
@@ -44,6 +50,95 @@ const styles = css.create({
       opacity: 0.6,
     },
   },
+  // Variants
+  primary: { "--bg-gradient": "linear-gradient(-45deg, #0EA5E9, #38BDF8)" },
+  secondary: { "--bg-gradient": "linear-gradient(-45deg, #22C55E, #4ADE80)" },
+  tertiary: { "--bg-gradient": "linear-gradient(-45deg, #F97316, #FB923C)" },
+  danger: { "--bg-gradient": "linear-gradient(-45deg, #EF4444, #F87171)" },
+  warning: { "--bg-gradient": "linear-gradient(-45deg, #EAB308, #FACC15)" },
+  info: { "--bg-gradient": "linear-gradient(-45deg, #06B6D4, #22D3EE)" },
+  light: {
+    color: "#1F2937",
+    "--bg-gradient": "linear-gradient(-45deg, #F3F4F6, #FFFFFF)",
+  },
+  dark: { "--bg-gradient": "linear-gradient(-45deg, #1F2937, #374151)" },
+  glass: {
+    color: "#ddddddff",
+    background: "rgba(255, 255, 255, 0.1)",
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(10px)",
+    "&:hover": {
+      background: "rgba(255, 255, 255, 0.2)",
+    },
+  },
+  neon: {
+    color: "#0ff",
+    textShadow: "0 0 5px #0ff",
+    background: "#000",
+    border: "2px solid #0ff",
+    boxShadow: "0 0 5px #0ff, 0 0 10px #0ff",
+    "&:hover": {
+      background: "#000",
+      boxShadow: "0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff",
+    },
+  },
+  gradient: {
+    background: "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)",
+    backgroundSize: "400% 400%",
+    animationName: gradientShift,
+    animationDuration: "15s",
+    animationTimingFunction: "ease",
+    animationIterationCount: "infinite",
+  },
+  shimmer: {
+    background:
+      "linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #764ba2 75%, #667eea 100%)",
+    backgroundSize: "200% auto",
+    animationName: shimmer,
+    animationDuration: "3s",
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
+  },
+  metallic: {
+    color: "#18181b",
+    textShadow: "0 1px 0 rgba(255,255,255,0.5)",
+    background:
+      "linear-gradient(145deg, #d4d4d8, #a1a1aa, #71717a, #a1a1aa, #d4d4d8)",
+    backgroundSize: "200% 200%",
+    border: "1px solid rgba(0,0,0,0.2)",
+    boxShadow:
+      "inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2)",
+    "&:hover": {
+      filter: "brightness(1.1)",
+    },
+  },
+  aurora: {
+    background:
+      "linear-gradient(-45deg, #00f5ff, #ff00ff, #00ff88, #ffaa00, #00f5ff)",
+    backgroundSize: "400% 400%",
+    boxShadow: "0 0 20px rgba(0, 245, 255, 0.5)",
+    animationName: aurora,
+    animationDuration: "10s",
+    animationTimingFunction: "ease",
+    animationIterationCount: "infinite",
+  },
+  // Sizes
+  small: {
+    "--padding": "8px 24px",
+    "--font-size": "10px",
+    "--border-radius": "8px",
+  },
+  medium: {
+    "--padding": "12px 32px",
+    "--font-size": "12px",
+    "--border-radius": "12px",
+  },
+  large: {
+    "--padding": "16px 40px",
+    "--font-size": "14px",
+    "--border-radius": "14px",
+  },
   ripple: {
     position: "absolute",
     background: "rgba(255, 255, 255, 0.2)",
@@ -66,30 +161,6 @@ const styles = css.create({
   },
 });
 
-const variantStyles = {
-  primary: { "--bg-gradient": "linear-gradient(-45deg, #0EA5E9, #38BDF8)" },
-  secondary: { "--bg-gradient": "linear-gradient(-45deg, #22C55E, #4ADE80)" },
-  tertiary: { "--bg-gradient": "linear-gradient(-45deg, #F97316, #FB923C)" },
-};
-
-const sizeStyles = {
-  small: {
-    "--padding": "8px 24px",
-    "--font-size": "10px",
-    "--border-radius": "8px",
-  },
-  medium: {
-    "--padding": "12px 32px",
-    "--font-size": "12px",
-    "--border-radius": "12px",
-  },
-  large: {
-    "--padding": "16px 40px",
-    "--font-size": "14px",
-    "--border-radius": "14px",
-  },
-};
-
 interface Ripple {
   id: number;
   top: number;
@@ -97,11 +168,29 @@ interface Ripple {
   size: number;
 }
 
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "danger"
+  | "warning"
+  | "info"
+  | "light"
+  | "dark"
+  | "glass"
+  | "neon"
+  | "gradient"
+  | "shimmer"
+  | "metallic"
+  | "aurora";
+
+type ButtonSize = "small" | "medium" | "large";
+
 interface Props {
   children: ReactNode;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  variant?: "primary" | "secondary" | "tertiary";
-  size?: "small" | "medium" | "large";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
   name?: string;
@@ -154,10 +243,7 @@ export const Button = ({
 
   return (
     <button
-      {...rx(css.props(styles.button), {
-        ...variantStyles[variant],
-        ...sizeStyles[size],
-      })}
+      className={css.props(styles.button, styles[variant], styles[size])}
       name={name}
       onClick={handleClick}
       disabled={isDisabled}
