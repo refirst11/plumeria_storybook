@@ -14,13 +14,26 @@ const meta = {
     size: "medium",
     disabled: false,
     loading: false,
-    name: "button",
-    "aria-label": "",
   },
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "secondary", "tertiary"],
+      options: [
+        "primary",
+        "secondary",
+        "tertiary",
+        "danger",
+        "warning",
+        "info",
+        "light",
+        "dark",
+        "glass",
+        "neon",
+        "gradient",
+        "shimmer",
+        "metallic",
+        "aurora",
+      ],
     },
     size: {
       control: "select",
@@ -66,6 +79,67 @@ export const Variants: Story = {
         </Button>
         <Button variant="tertiary" name="tertiary">
           Tertiary
+        </Button>
+      </div>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <Button variant="danger" name="danger">
+          Danger
+        </Button>
+        <Button variant="warning" name="warning">
+          Warning
+        </Button>
+        <Button variant="info" name="info">
+          Info
+        </Button>
+      </div>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <Button variant="light" name="light">
+          Light
+        </Button>
+        <Button variant="dark" name="dark">
+          Dark
+        </Button>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+          padding: "20px",
+          background: "linear-gradient(45deg, #333, #666)",
+          borderRadius: "8px",
+        }}
+      >
+        <Button variant="glass" name="glass">
+          Glass
+        </Button>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+          padding: "20px",
+          background: "#111",
+          borderRadius: "8px",
+        }}
+      >
+        <Button variant="neon" name="neon">
+          Neon
+        </Button>
+      </div>
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <Button variant="gradient" name="gradient">
+          Gradient
+        </Button>
+        <Button variant="shimmer" name="shimmer">
+          Shimmer
+        </Button>
+        <Button variant="metallic" name="metallic">
+          Metallic
+        </Button>
+        <Button variant="aurora" name="aurora">
+          Aurora
         </Button>
       </div>
       <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
