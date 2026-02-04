@@ -1,4 +1,4 @@
-import { css } from "@plumeria/core";
+import * as css from "@plumeria/core";
 import { useState, type ReactNode, type MouseEvent } from "react";
 import {
   rippleEffect,
@@ -31,23 +31,23 @@ const styles = css.create({
     borderRadius: "var(--border-radius)",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     transition: "all 0.2s ease-in-out",
-    "&:hover": {
+    "[disabled]": {
+      pointerEvents: "none",
+      cursor: "not-allowed",
+      opacity: 0.6,
+    },
+    ":hover": {
       boxShadow: "0 7px 10px rgba(0, 0, 0, 0.15)",
       filter: "brightness(0.95)",
       transform: "translateY(-1px)",
     },
-    "&:active": {
+    ":active": {
       boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
       filter: "brightness(0.9)",
       transform: "translateY(-1px) scale(0.98)",
     },
-    "&:focus": {
+    ":focus": {
       outline: "none",
-    },
-    "&[disabled]": {
-      pointerEvents: "none",
-      cursor: "not-allowed",
-      opacity: 0.6,
     },
   },
   // Variants
@@ -68,7 +68,7 @@ const styles = css.create({
     border: "1px solid rgba(255, 255, 255, 0.2)",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
     backdropFilter: "blur(10px)",
-    "&:hover": {
+    ":hover": {
       background: "rgba(255, 255, 255, 0.2)",
     },
   },
@@ -78,7 +78,7 @@ const styles = css.create({
     background: "#000",
     border: "2px solid #0ff",
     boxShadow: "0 0 5px #0ff, 0 0 10px #0ff",
-    "&:hover": {
+    ":hover": {
       background: "#000",
       boxShadow: "0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff",
     },
@@ -109,7 +109,7 @@ const styles = css.create({
     border: "1px solid rgba(0,0,0,0.2)",
     boxShadow:
       "inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.3), 0 4px 6px rgba(0,0,0,0.2)",
-    "&:hover": {
+    ":hover": {
       filter: "brightness(1.1)",
     },
   },
@@ -197,6 +197,30 @@ interface Props {
   "aria-label"?: string;
 }
 
+const getVariants = css.variants({
+  variant: {
+    dark: styles.dark,
+    light: styles.light,
+    primary: styles.primary,
+    secondary: styles.secondary,
+    tertiary: styles.tertiary,
+    danger: styles.danger,
+    warning: styles.warning,
+    info: styles.info,
+    glass: styles.glass,
+    neon: styles.neon,
+    gradient: styles.gradient,
+    shimmer: styles.shimmer,
+    metallic: styles.metallic,
+    aurora: styles.aurora,
+  },
+  size: {
+    small: styles.small,
+    medium: styles.medium,
+    large: styles.large,
+  },
+});
+
 export const Button = ({
   children,
   onClick,
@@ -232,7 +256,7 @@ export const Button = ({
 
     setTimeout(() => {
       setRipples((prevRipples) =>
-        prevRipples.filter((r) => r.id !== newRipple.id)
+        prevRipples.filter((r) => r.id !== newRipple.id),
       );
     }, 600);
 
@@ -243,7 +267,7 @@ export const Button = ({
 
   return (
     <button
-      className={css.props(styles.button, styles[variant], styles[size])}
+      className={css.props(styles.button, getVariants({ variant, size }))}
       name={name}
       onClick={handleClick}
       disabled={isDisabled}
