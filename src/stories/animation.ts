@@ -1,4 +1,4 @@
-import { css } from "@plumeria/core";
+import * as css from "@plumeria/core";
 
 export const rippleEffect = css.keyframes({
   to: {
