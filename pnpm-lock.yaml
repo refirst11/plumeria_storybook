@@ -22,14 +22,14 @@ importers:
         specifier: ^9.33.0
         version: 9.39.1
       '@plumeria/core':
-        specifier: ^7.4.2
-        version: 7.4.2
+        specifier: ^8.0.1
+        version: 8.0.1
       '@plumeria/eslint-plugin':
-        specifier: ^7.4.2
-        version: 7.4.2
+        specifier: ^8.0.1
+        version: 8.0.1
       '@plumeria/vite-plugin':
-        specifier: ^7.4.2
-        version: 7.4.2
+        specifier: ^8.0.1
+        version: 8.0.1
       '@storybook/addon-a11y':
         specifier: ^10.2.0
         version: 10.2.0(storybook@10.2.0(@testing-library/dom@10.4.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
@@ -424,18 +424,18 @@ packages:
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
 
-  '@plumeria/core@7.4.2':
-    resolution: {integrity: sha512-1DD+ckz9bwUS9hFkLfxHr59jVJGMX/UnoB6PKPEBPq5tPc7xhyC8TXAK8ooiyY+xkkaNwyLLH4b0KAclnG43ZA==}
+  '@plumeria/core@8.0.1':
+    resolution: {integrity: sha512-BhG2sfxg4nRYO9VWNzE7ExviFcxmEwF98kehcBjRrO2UkCfEw+JOXf8EmueF3k27eMkoKizbTZsGWnNUt56M1Q==}
 
-  '@plumeria/eslint-plugin@7.4.2':
-    resolution: {integrity: sha512-TbvFqEuyeGK+GZE7ticwOlXJZhYTlBdrW7kyN4zI1xSdiYCby2yS5t1ytuFPz8ESjKZmnRHx++Y2PvxwOqzdJQ==}
+  '@plumeria/eslint-plugin@8.0.1':
+    resolution: {integrity: sha512-MGSu5T79Kus2nW7cD8tpyUhp157o4SHID1gShtih9zXmw6tqmd+jlg845loJXHGLZ/cb/wj7hViTPqDI5kbO3A==}
     hasBin: true
 
-  '@plumeria/utils@7.4.2':
-    resolution: {integrity: sha512-1sHGsxhO4mSEBIs2vm8OvJEhC57Jmysq6XqOkSJD/IIcH1MYA7IN21x0fOLfRBKrpS+n7Kz5DQAZmSDcOVoldg==}
+  '@plumeria/utils@8.0.1':
+    resolution: {integrity: sha512-Hb2HGgGlx+DPz2nTF+1OY2ZCYbfXSJNqfgtjKknMNTLF0donhlHo33KFGCWpZ86AMDtyr9CYVXs4nRzzUIQ+vQ==}
 
-  '@plumeria/vite-plugin@7.4.2':
-    resolution: {integrity: sha512-jGGREAQ2MMMfdAmHtu9o7VGRlZHwZ7BIpOeAENqrfbz7OAyAc3ESu39pHvTzTOGBcFSXqPzC26Dp3gEjLEsbNQ==}
+  '@plumeria/vite-plugin@8.0.1':
+    resolution: {integrity: sha512-dByG2gAtHWuqItNuE+A5+rqsXZRGXYkMuaa/xMEjw5f77jyn2cxbe0/qqngxT+uToxfDX2qHF62G6fdESXdkXw==}
 
   '@rolldown/pluginutils@1.0.0-beta.47':
     resolution: {integrity: sha512-8QagwMH3kNCuzD8EWL8R2YPW5e4OrHNSAHRFDdmFqEwEaD/KcNKjVoumo+gP2vW5eKB2UPbM6vTYiGZX0ixLnw==}
@@ -2094,13 +2094,13 @@ snapshots:
 
   '@neoconfetti/react@1.0.0': {}
 
-  '@plumeria/core@7.4.2':
+  '@plumeria/core@8.0.1':
     dependencies:
       csstype: 3.2.3
 
-  '@plumeria/eslint-plugin@7.4.2': {}
+  '@plumeria/eslint-plugin@8.0.1': {}
 
-  '@plumeria/utils@7.4.2':
+  '@plumeria/utils@8.0.1':
     dependencies:
       '@swc/core': 1.15.8
       lightningcss: 1.30.2
@@ -2110,9 +2110,9 @@ snapshots:
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@plumeria/vite-plugin@7.4.2':
+  '@plumeria/vite-plugin@8.0.1':
     dependencies:
-      '@plumeria/utils': 7.4.2
+      '@plumeria/utils': 8.0.1
     transitivePeerDependencies:
       - '@swc/helpers'
 
