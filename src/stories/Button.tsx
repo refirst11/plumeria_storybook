@@ -1,4 +1,4 @@
-import * as css from "@plumeria/core";
+import * as style from "@plumeria/core";
 import { useState, type ReactNode, type MouseEvent } from "react";
 import {
   rippleEffect,
@@ -8,7 +8,7 @@ import {
   aurora,
 } from "./animation";
 
-const styles = css.create({
+const styles = style.create({
   content: {
     position: "relative",
     zIndex: 1,
@@ -51,17 +51,31 @@ const styles = css.create({
     },
   },
   // Variants
-  primary: { "--bg-gradient": "linear-gradient(-45deg, #0EA5E9, #38BDF8)" },
-  secondary: { "--bg-gradient": "linear-gradient(-45deg, #22C55E, #4ADE80)" },
-  tertiary: { "--bg-gradient": "linear-gradient(-45deg, #F97316, #FB923C)" },
-  danger: { "--bg-gradient": "linear-gradient(-45deg, #EF4444, #F87171)" },
-  warning: { "--bg-gradient": "linear-gradient(-45deg, #EAB308, #FACC15)" },
-  info: { "--bg-gradient": "linear-gradient(-45deg, #06B6D4, #22D3EE)" },
+  primary: {
+    "--bg-gradient": "linear-gradient(-45deg, #0EA5E9, #38BDF8)",
+  },
+  secondary: {
+    "--bg-gradient": "linear-gradient(-45deg, #22C55E, #4ADE80)",
+  },
+  tertiary: {
+    "--bg-gradient": "linear-gradient(-45deg, #F97316, #FB923C)",
+  },
+  danger: {
+    "--bg-gradient": "linear-gradient(-45deg, #EF4444, #F87171)",
+  },
+  warning: {
+    "--bg-gradient": "linear-gradient(-45deg, #EAB308, #FACC15)",
+  },
+  info: {
+    "--bg-gradient": "linear-gradient(-45deg, #06B6D4, #22D3EE)",
+  },
   light: {
     color: "#1F2937",
     "--bg-gradient": "linear-gradient(-45deg, #F3F4F6, #FFFFFF)",
   },
-  dark: { "--bg-gradient": "linear-gradient(-45deg, #1F2937, #374151)" },
+  dark: {
+    "--bg-gradient": "linear-gradient(-45deg, #1F2937, #374151)",
+  },
   glass: {
     color: "#ddddddff",
     background: "rgba(255, 255, 255, 0.1)",
@@ -197,7 +211,7 @@ interface Props {
   "aria-label"?: string;
 }
 
-const getVariants = css.variants({
+const getVariants = style.variants({
   variant: {
     dark: styles.dark,
     light: styles.light,
@@ -267,7 +281,7 @@ export const Button = ({
 
   return (
     <button
-      className={css.props(styles.button, getVariants({ variant, size }))}
+      className={style.use(styles.button, getVariants({ variant, size }))}
       name={name}
       onClick={handleClick}
       disabled={isDisabled}
@@ -275,15 +289,15 @@ export const Button = ({
       aria-busy={loading}
     >
       {loading ? (
-        <div className={css.props(styles.spinner)} />
+        <div className={style.use(styles.spinner)} />
       ) : (
-        <span className={css.props(styles.content)}>{children}</span>
+        <span className={style.use(styles.content)}>{children}</span>
       )}
       {!loading &&
         ripples.map((ripple) => (
           <span
             key={ripple.id}
-            className={css.props(styles.ripple)}
+            className={style.use(styles.ripple)}
             style={{
               top: ripple.top,
               left: ripple.left,
