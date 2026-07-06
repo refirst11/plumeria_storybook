@@ -22,14 +22,14 @@ importers:
         specifier: ^9.33.0
         version: 9.39.1
       '@plumeria/core':
-        specifier: ^15.0.0
-        version: 15.0.0
+        specifier: ^15.1.0
+        version: 15.1.0
       '@plumeria/eslint-plugin':
-        specifier: ^15.0.0
-        version: 15.0.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.8.3)
+        specifier: ^15.1.0
+        version: 15.1.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.8.3)
       '@plumeria/unplugin':
-        specifier: ^15.0.0
-        version: 15.0.0(rollup@4.53.3)
+        specifier: ^15.1.0
+        version: 15.1.0(rollup@4.53.3)
       '@storybook/addon-a11y':
         specifier: ^10.4.0
         version: 10.4.0(storybook@10.4.0(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.1)(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
@@ -671,18 +671,18 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@plumeria/core@15.0.0':
-    resolution: {integrity: sha512-WqQA7hAf14Hzh/7CtNiPIHWtfWm62Fjuz/EMSum96phfrfSKANhrkiWqbWw0WWJye+m4FUiswVZrQEuEqNLu8w==}
+  '@plumeria/core@15.1.0':
+    resolution: {integrity: sha512-aW8YrQB2HlMt4SpTt/z8Tc2xFp4uIjkAhZf0lJC49zB0xRBRC+HWbdKjK8mpuljmKkW0WS+As40uOCuPeRNWHQ==}
 
-  '@plumeria/eslint-plugin@15.0.0':
-    resolution: {integrity: sha512-2vnG1U+vAkIHAHvwrU3FxmvqwO7sDucY7OisBHEa0UcuGDqpeyOgxqL+Lg3oWfq8lOSR/Bs8Dwz4Vh22hwuCHg==}
+  '@plumeria/eslint-plugin@15.1.0':
+    resolution: {integrity: sha512-+0aozoqaqAZJdCmczRL3NIT9n765aBHgcgKRKVp6mW7VErzmTJyUBBGilP25v0itSO9h9gcrGNY7eAvXzkLNJQ==}
     hasBin: true
 
-  '@plumeria/unplugin@15.0.0':
-    resolution: {integrity: sha512-YzaU9UU13fsmuJFwRLOwsThTdm4jC1+1I7RUzoiwE1ES4D3Koac3JOMgvyPrQVC6ss17BRctt+EIrKEVVrOq2g==}
+  '@plumeria/unplugin@15.1.0':
+    resolution: {integrity: sha512-swaIwvYRgbDwHWPlpTrwC6r/iK5HhximZsm8oZOQ8qRg30rZRBtB5m4bL7G6jPRSmljpeACso44lCE1R6L7ZOw==}
 
-  '@plumeria/utils@15.0.0':
-    resolution: {integrity: sha512-2++XnHbSxSUbv33hyy3wZNcx82Z8mH9ChLcw1KHLIv0NjNPvifEAgNnCFLfNZXwBOsY31lwiMLcypePPUANE0w==}
+  '@plumeria/utils@15.1.0':
+    resolution: {integrity: sha512-/LgRpAVZ/ZEWntxj9EkqNPzezUC2zQU8JlzwmryDMoFSfJP/u49xZcGiQgiwZTPBRBWBomCIpuFHel13gFCjyA==}
 
   '@rolldown/pluginutils@1.0.0-beta.47':
     resolution: {integrity: sha512-8QagwMH3kNCuzD8EWL8R2YPW5e4OrHNSAHRFDdmFqEwEaD/KcNKjVoumo+gP2vW5eKB2UPbM6vTYiGZX0ixLnw==}
@@ -2628,9 +2628,9 @@ snapshots:
   '@oxc-resolver/binding-win32-x64-msvc@11.19.1':
     optional: true
 
-  '@plumeria/core@15.0.0': {}
+  '@plumeria/core@15.1.0': {}
 
-  '@plumeria/eslint-plugin@15.0.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.8.3)':
+  '@plumeria/eslint-plugin@15.1.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/utils': 8.61.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.8.3)
       known-css-properties: 0.37.0
@@ -2639,16 +2639,16 @@ snapshots:
       - supports-color
       - typescript
 
-  '@plumeria/unplugin@15.0.0(rollup@4.53.3)':
+  '@plumeria/unplugin@15.1.0(rollup@4.53.3)':
     dependencies:
-      '@plumeria/utils': 15.0.0
+      '@plumeria/utils': 15.1.0
       '@rollup/pluginutils': 5.4.0(rollup@4.53.3)
       unplugin: 3.0.0
     transitivePeerDependencies:
       - '@swc/helpers'
       - rollup
 
-  '@plumeria/utils@15.0.0':
+  '@plumeria/utils@15.1.0':
     dependencies:
       '@rust-gear/glob': 1.0.0
       '@swc/core': 1.15.41
